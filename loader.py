@@ -1,11 +1,14 @@
 from elasticsearch import Elasticsearch
 
 import csv
+import config
 
 es = Elasticsearch(
-    hosts=["https://192.168.1.6:9200/"],
-    http_auth=("elastic", "9348Xz5io3gb8her9*Xe"),
-    verify_certs=False)
+    hosts=config.HOSTS,
+    http_auth=config.HTTP_AUTH,
+    ca_certs=config.CA_CERTS,
+    verify_certs=config.VERIFY_CERTS)
+
 
 print(f"Connected successfully to ElasticSearch cluster `{es.info().body['cluster_name']}`")
 
